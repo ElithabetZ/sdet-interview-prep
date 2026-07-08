@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ReverseString.Tests
 {
@@ -9,17 +8,16 @@ namespace ReverseString.Tests
         [TestCase("Hello", "olleH")]
         [TestCase("123", "321")]
         [TestCase("aaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaa")]
+        [TestCase("", "")]
         public void HappyPath(string text, string reversedText)
         {
             Assert.That(ReverseString.ToReverse(text), Is.EqualTo(reversedText));
         }
 
         [Test]
-        public void EmptyValue()
+        public void NullValue()
         {
-            String text = "";
-            String reversedText = "";
-            Assert.That(ReverseString.ToReverse(text), Is.EqualTo(reversedText));
+            Assert.Throws<ArgumentNullException>(() => ReverseString.ToReverse(null));
         }
 
     }
